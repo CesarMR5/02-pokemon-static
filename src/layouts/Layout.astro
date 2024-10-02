@@ -1,0 +1,43 @@
+---
+import { siteInfo } from '@src/consts/site-info';
+import ViewTransitions from 'astro/components/ViewTransitions.astro';
+
+interface Props {
+  title?: string;
+	image?: string;
+	description?: string;
+}
+
+const { 
+	title = siteInfo.title, 
+	description = siteInfo.description ,
+	image
+} = Astro.props;
+---
+
+<html lang="es">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="viewport" content="width=device-width" />
+
+		<!-- SEO -->
+		 <meta name="description" content={description}>
+		 <meta name="author" content="Cesar Miranda">
+
+		 <!-- og Metatags -->
+		 <meta property="og:title" content={title}>
+		 <meta property="og:description" content={description}>
+		 <meta property="og:image" content={image}>
+
+		<title>{title}</title>
+
+		<ViewTransitions />
+	</head>
+	<body class="bg-slate-800 text-slate-100 m-auto max-w-3xl">
+    <main class="mt-10">
+      <slot />
+
+    </main>
+	</body>
+</html>
